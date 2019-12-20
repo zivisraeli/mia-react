@@ -1,12 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+let jsContainer = document.getElementById('js');
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const render = () => {
+  jsContainer.innerHTML = `
+  <div class="demo">
+    Hello JS
+    <input />
+    <p>${new Date()}</p>
+  </div>
+`;
+
+  let reactContainer = document.getElementById('react');
+  ReactDOM.render(
+    React.createElement(
+      "div", { className: "demo" },
+      "Hello React",
+      React.createElement("input"),
+      React.createElement(
+        "p",
+        null,
+        new Date().toString()
+      )
+    ),
+    reactContainer
+  )
+}
+
+setInterval(render, 1000);

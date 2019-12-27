@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.js": "/mia-react/static/js/main.49756b91.chunk.js",
-    "main.js.map": "/mia-react/static/js/main.49756b91.chunk.js.map",
+    "main.css": "/mia-react/static/css/main.a4707d9e.chunk.css",
+    "main.js": "/mia-react/static/js/main.412c4f3e.chunk.js",
+    "main.js.map": "/mia-react/static/js/main.412c4f3e.chunk.js.map",
     "runtime-main.js": "/mia-react/static/js/runtime-main.a884c96e.js",
     "runtime-main.js.map": "/mia-react/static/js/runtime-main.a884c96e.js.map",
-    "static/js/2.c5f6ac44.chunk.js": "/mia-react/static/js/2.c5f6ac44.chunk.js",
-    "static/js/2.c5f6ac44.chunk.js.map": "/mia-react/static/js/2.c5f6ac44.chunk.js.map",
+    "static/js/2.cc92c56c.chunk.js": "/mia-react/static/js/2.cc92c56c.chunk.js",
+    "static/js/2.cc92c56c.chunk.js.map": "/mia-react/static/js/2.cc92c56c.chunk.js.map",
     "index.html": "/mia-react/index.html",
-    "precache-manifest.f185842601ac550ddf479986bafd2c14.js": "/mia-react/precache-manifest.f185842601ac550ddf479986bafd2c14.js",
+    "precache-manifest.39f1751d43e1e1657a4b1f68eb16b1eb.js": "/mia-react/precache-manifest.39f1751d43e1e1657a4b1f68eb16b1eb.js",
     "service-worker.js": "/mia-react/service-worker.js",
-    "static/js/2.c5f6ac44.chunk.js.LICENSE": "/mia-react/static/js/2.c5f6ac44.chunk.js.LICENSE"
+    "static/css/main.a4707d9e.chunk.css.map": "/mia-react/static/css/main.a4707d9e.chunk.css.map",
+    "static/js/2.cc92c56c.chunk.js.LICENSE": "/mia-react/static/js/2.cc92c56c.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.a884c96e.js",
-    "static/js/2.c5f6ac44.chunk.js",
-    "static/js/main.49756b91.chunk.js"
+    "static/js/2.cc92c56c.chunk.js",
+    "static/css/main.a4707d9e.chunk.css",
+    "static/js/main.412c4f3e.chunk.js"
   ]
 }

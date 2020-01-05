@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,8 +11,11 @@ import About from './About';
 import Selfies from './Selfies';
 import Fans from './Fans';
 import Kitbull from './Kitbull';
+
+import './style.css';
+import './spinner.css';
  
-class App extends Component {
+class App extends React.Component {
   render() {
     return (      
        <Router>

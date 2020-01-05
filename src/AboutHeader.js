@@ -15,8 +15,8 @@ class AboutHeader extends React.Component {
       <section id="about-top-section">
 	      <h1 id="title-left">Hi there. <br/> I'm Mia.</h1>
 	      <div id="img-div">
-	        <img src={imgFrame} id="img-frame"/>
-	        <img src={miaAbout} id="img"/>
+	        <img src={imgFrame} alt="img-frame" id="img-frame"/>
+	        <img src={miaAbout} alt="mia-about" id="img"/>
 	      </div>
 	      <h1 id="title-right">And this site is <br/> all about me.</h1>
       </section>

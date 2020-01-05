@@ -1,9 +1,8 @@
 import React from 'react';
-import MainMenu from './MainMenu';
+
 import AboutHeader from './AboutHeader';
 import AboutSection from './AboutSection';
 import Footer from './Footer';
-import './style.css';
 
 class About extends React.Component {
   constructor(props) {
@@ -14,13 +13,13 @@ class About extends React.Component {
   }
   render() {
     return (
-      <fragment>
+      <React.Fragment>
         <main>
           <AboutHeader />
           <AboutSection />
         </main>
         <Footer />
-      </fragment>
+      </React.Fragment>
     );
   }
 }

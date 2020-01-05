@@ -1,12 +1,9 @@
 import React from 'react';
-import Footer from './Footer';
-import FansHeader from './FansHeader';
-import './style.css';
 
 class FansSection extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
 
     }

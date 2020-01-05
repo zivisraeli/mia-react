@@ -1,8 +1,8 @@
 import React from 'react';
+
 import Footer from './Footer';
 import FansHeader from './FansHeader';
 import FansSection from './FansSection';
-import './style.css';
 
 class Fans extends React.Component {
   constructor(props) {
@@ -13,13 +13,13 @@ class Fans extends React.Component {
   }
   render() {
     return (
-      <fragment>
+      <React.Fragment>
         <main>
           <FansHeader />
           <FansSection />
         </main>
         <Footer />
-      </fragment>
+      </React.Fragment>
     );
   }
 }

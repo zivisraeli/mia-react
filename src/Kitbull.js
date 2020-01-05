@@ -1,8 +1,8 @@
 import React from 'react';
-import Footer from './Footer';
+
 import KitbullVideo from './KitbullVideo';
 import KitbullSection from './KitbullSection';
-import './style.css';
+import Footer from './Footer';
 
 class Kitbull extends React.Component {
   constructor(props) {
@@ -13,13 +13,13 @@ class Kitbull extends React.Component {
   }
   render() {
     return (
-      <fragment>
+      <React.Fragment>  
         <main>
           <KitbullVideo />
           <KitbullSection />
         </main>
         <Footer />
-      </fragment>
+      </React.Fragment>  
     );
   }
 }

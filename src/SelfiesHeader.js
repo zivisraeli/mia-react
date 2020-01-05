@@ -2,8 +2,32 @@ import React from 'react';
 
 class SelfiesHeader extends React.Component {
   render() {
+  	let theStyle={ visibility: 'hidden' }
+
     return ( 
-      <div>123</div>
+      <section>
+	      <h1>Some of my best selfies!</h1>
+	      <ul className="customed-ul">
+	        <li>
+	          Sort Images By:
+	          <div id="select-option-div" style={theStyle}>
+	            <select id="select-sort">
+	              <option id="likes+1">Like number; Asc.</option>
+	              <option id="likes-1">Like number; Desc.</option>
+	              <option id="captions+1">Caption; Asc.</option>
+	              <option id="captions-1">Caption; Desc.</option>
+	            </select>
+	          </div>
+	        </li>
+	        <li>Click on the image for a full image view.</li>
+	        <li className="desktopLi">Click on the heart icon to like the image!</li>
+	        <li className="desktopLi">Drag an image to the header and persist it.</li>
+	        <li className="mobileLi">Swipe to the right to like the image!</li>
+	        <li className="mobileLi">Swipe to the left to replace the header's image.</li>
+	        <li>Your choices are permanently stored on your local device.</li>
+	      </ul>
+	      <hr/>
+      </section>
     );
   }
 }

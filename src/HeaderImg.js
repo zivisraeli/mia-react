@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import headerImg from './images/mia-small-id02.jpg';
 
-class HeaderImg extends Component {
+class HeaderImg extends React.Component {
   componentDidMount() {
     let headerImgElem = document.querySelector("header img");
     headerImgElem.onload = function() {
@@ -11,8 +11,8 @@ class HeaderImg extends Component {
   }
 
   render() {
-    return (<div id="dragged-into-div">
-              <img src={headerImg}  id="header-img" className="header-img" alt="header-img"/>
+    return (<div id="dragged-into-div">                          
+             <img src={headerImg} id="header-img" className="header-img" alt="header-img"/>
             </div>);
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css';
 
 class FansHeader extends React.Component {
   constructor(props) {
@@ -11,7 +10,7 @@ class FansHeader extends React.Component {
 
   render() {
     return (
-      <fragment>
+      <React.Fragment>
         <h1>Join My Fan Club!</h1>
         <section id="form-header">
           <ul class="customed-ul">
@@ -21,7 +20,7 @@ class FansHeader extends React.Component {
             <li>I respect your privacy!</li>
           </ul>
         </section>
-      </fragment>
+      </React.Fragment>
     );
   }
 }

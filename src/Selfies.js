@@ -1,8 +1,8 @@
 import React from 'react';
-import Footer from './Footer';
+
 import SelfiesHeader from './SelfiesHeader';
 import SelfiesSection from './SelfiesSection';
-import './style.css';
+import Footer from './Footer';
 
 class Selfies extends React.Component {
   constructor(props) {
@@ -11,15 +11,16 @@ class Selfies extends React.Component {
 
     }
   }
+
   render() {
     return (
-      <fragment>
-        <main>
+      <React.Fragment>
+        <main id="grid-section" >
           <SelfiesHeader />
           <SelfiesSection />
         </main>
         <Footer />        
-      </fragment>
+      </React.Fragment>
     );
   }
 }

@@ -1,0 +1,87 @@
+import { gridItemsData } from './gridItemsData';
+
+// =============================================================================
+// This function takes 2 parameters, compare them and return true or false.
+// Javascript sort function take a "compare" function as a parameter. 
+// Since gridItemsData is imported, Javascript would allow to change it.
+// An imported symbol is akin to having a const symbol. 
+// =============================================================================
+export const sortGridItemsEvent = (sortByAttr, direction) => {
+  let sortedGridItems = gridItemsData.sort((item1, item2) => {
+    let retVal = 0;
+    if (sortByAttr === "captions") {
+      retVal = item1.caption.toUpperCase() > item2.caption.toUpperCase() ? 1 : -1;
+    } else {
+      retVal = item1.likeCount > item2.likeCount ? 1 : -1
+    }
+    return retVal * direction;
+  });
+  
+  sortedGridItems.forEach( (gridItem, index) => {
+    gridItemsData[index] = gridItem;
+  });
+}
+
+// =============================================================================
+// This method is invoked from various places.
+// Upong setting the sort attribute and direction 
+// the gridItemsData array should be re-sorted.
+// =============================================================================  
+export const setSortProperties = (sortAttr, sortDirection) => {
+  sortGridItemsEvent(sortAttr, sortDirection);
+}
+
+// =============================================================================
+// cookie related functions
+// =============================================================================
+export const getCookie = (name) => {
+  // since document.cookie returns all cookie, match would filter out the one I need.
+  // the match regex: cookie name should follow an equal sign AND NOT a space of a semi-colon.
+  // with 'capturing groups' we get an array with the array[0] is the entire expression value.
+  // the rest of the values are the group's value.
+  let value = document.cookie.match('(?:^|;)\\s?' + name + '=([^\\s;]*)');
+  return value ? value[1] : null;
+}
+
+/*export const setCookie = (name, value, days = 365) => {
+  let d = new Date;
+  d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
+  document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+}
+*/
+// =============================================================================
+// Determine the current slected menu and style it differently. 
+// =============================================================================
+export const currentMenuEntry = () => {
+  let anchor = '';
+  let pageName = window.location.pathname;
+  if (pageName.includes("index.html")) {
+    anchor = document.querySelector('nav span#index');
+  } else if (pageName.includes("selfies.html")) {
+    anchor = document.querySelector('nav span#selfies');
+  } else if (pageName.includes("fans.html")) {
+    anchor = document.querySelector('nav span#fans');
+  } else if (pageName.includes("kitbull.html")) {
+    anchor = document.querySelector('nav span#kitbull');
+  } else {
+    anchor = document.querySelector('nav span#index');
+  }
+  anchor.style.textShadow = '1px 1px 4px gray';
+}
+
+// =============================================================================
+// Based on a cookie value find the header img id and set the image accordingly.
+// =============================================================================
+export const setHeaderImage = () => {
+  let headerImgId = getCookie("headerImgId");
+  headerImgId = headerImgId === null ? 'small-id02' : headerImgId;
+  let headerImgSrc = `images/mia-${headerImgId}.jpg`;
+  let headerImgElem = document.querySelector("header img");
+  headerImgElem.setAttribute("src", headerImgSrc);
+
+  // Without this function the border will be drawn first as a straight line and then 
+  // the image would appear. I'm waiting for the image to be loaded frist. 
+  headerImgElem.onload = function() {
+    headerImgElem.style.border = "1px solid black";
+  }
+}

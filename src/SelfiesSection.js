@@ -11,7 +11,8 @@ class SelfiesSection extends React.Component {
 
     this.state = {
       visibility: 'hidden',
-      spinnerDisplay: 'block'
+      spinnerDisplay: 'block',
+      gridItemsData: gridItemsData
     };
 
     this.gridItemImgLoadHandler = this.gridItemImgLoadHandler.bind(this);
@@ -27,9 +28,26 @@ class SelfiesSection extends React.Component {
     }
   }
 
+/*  sortGridItemsHandler = (sortByAttr, direction) => {
+    let sortedGridItems = gridItemsData.sort((item1, item2) => {
+      let retVal = 0;
+      if (sortByAttr === "captions") {
+        retVal = item1.caption.toUpperCase() > item2.caption.toUpperCase() ? 1 : -1;
+      } else {
+        retVal = item1.likeCount > item2.likeCount ? 1 : -1
+      }
+      return retVal * direction;
+    });
+
+    sortedGridItems.forEach((gridItem, index) => {
+      gridItemsData[index] = gridItem;
+    });
+    console.log(gridItemsData[0]);
+  }*/
+
   render() {
-    let gridStyle = { visibility: this.state.visibility } 
-    let spinnerStyle = { display: this.state.spinnerDisplay }    
+    let gridStyle = { visibility: this.state.visibility }
+    let spinnerStyle = { display: this.state.spinnerDisplay }
 
     return (
       <section className="grid-section middle-section">

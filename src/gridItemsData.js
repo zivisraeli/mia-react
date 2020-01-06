@@ -4,7 +4,7 @@ class ItemData {
   }
 }
 
-class GridItemData extends ItemData {
+export class GridItemData extends ItemData {
   constructor(id, src, caption, date, likeCount, isLiked) {
     super(id);
     this.src = src;

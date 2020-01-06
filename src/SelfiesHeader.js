@@ -1,23 +1,16 @@
 import React from 'react';
 
+import SelfiesHeaderSortOptions from './SelfiesHeaderSortOptions';
+
 class SelfiesHeader extends React.Component {
   render() {
-  	let theStyle={ visibility: 'hidden' }
-
+  	
     return ( 
       <section>
 	      <h1>Some of my best selfies!</h1>
 	      <ul className="customed-ul">
 	        <li>
-	          Sort Images By:
-	          <div id="select-option-div" style={theStyle}>
-	            <select id="select-sort">
-	              <option id="likes+1">Like number; Asc.</option>
-	              <option id="likes-1">Like number; Desc.</option>
-	              <option id="captions+1">Caption; Asc.</option>
-	              <option id="captions-1">Caption; Desc.</option>
-	            </select>
-	          </div>
+	          Sort Images By: <SelfiesHeaderSortOptions />        
 	        </li>
 	        <li>Click on the image for a full image view.</li>
 	        <li className="desktopLi">Click on the heart icon to like the image!</li>

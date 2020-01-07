@@ -1,26 +1,4 @@
-import { gridItemsData } from './gridItemsData';
 
-// =============================================================================
-// This function takes 2 parameters, compare them and return true or false.
-// Javascript sort function take a "compare" function as a parameter. 
-// Since gridItemsData is imported, Javascript would allow to change it.
-// An imported symbol is akin to having a const symbol. 
-// =============================================================================
-export const sortGridItems = (sortByAttr, direction) => {
-  let sortedGridItems = gridItemsData.sort((item1, item2) => {
-    let retVal = 0;
-    if (sortByAttr === "captions") {
-      retVal = item1.caption.toUpperCase() > item2.caption.toUpperCase() ? 1 : -1;
-    } else {
-      retVal = item1.likeCount > item2.likeCount ? 1 : -1
-    }
-    return retVal * direction;
-  });
-  
-  sortedGridItems.forEach( (gridItem, index) => {
-    gridItemsData[index] = gridItem;
-  });
-}
 
 // =============================================================================
 // cookie related functions
@@ -35,7 +13,7 @@ export const getCookie = (name) => {
 }
 
 export const setCookie = (name, value, days = 365) => {
-  let d = new Date;
+  let d = new Date();
   d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
   document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }

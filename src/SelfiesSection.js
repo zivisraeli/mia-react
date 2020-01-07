@@ -11,15 +11,16 @@ class SelfiesSection extends React.Component {
 
     this.state = {
       visibility: 'hidden',
-      spinnerDisplay: 'block',
-      gridItemsData: gridItemsData
+      spinnerDisplay: 'block'
     };
 
     this.gridItemImgLoadHandler = this.gridItemImgLoadHandler.bind(this);
   }
 
+  // =============================================================================
   // Invoked by the GridItem component upon image loading.
   // When loadedImgCounter === total number of images the div can become visible. 
+  // =============================================================================  
   gridItemImgLoadHandler() {
     loadedImgCounter++;
     if (loadedImgCounter === gridItemsData.length) {

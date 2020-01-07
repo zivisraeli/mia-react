@@ -4,13 +4,13 @@ import SelfiesHeaderSortOptions from './SelfiesHeaderSortOptions';
 
 class SelfiesHeader extends React.Component {
   render() {
-  	
-    return ( 
+
+    return (
       <section>
 	      <h1>Some of my best selfies!</h1>
 	      <ul className="customed-ul">
 	        <li>
-	          Sort Images By: <SelfiesHeaderSortOptions />        
+	          Sort Images By: <SelfiesHeaderSortOptions sortOptionsChangedCallback={this.props.sortOptionsChangedCallback}/>        
 	        </li>
 	        <li>Click on the image for a full image view.</li>
 	        <li className="desktopLi">Click on the heart icon to like the image!</li>

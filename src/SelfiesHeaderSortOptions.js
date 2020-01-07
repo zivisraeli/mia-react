@@ -1,50 +1,56 @@
 import React from 'react';
 
-import { sortGridItems, getCookie, setCookie } from './Utils.js';
+import { getCookie, setCookie } from './Utils.js';
 
 class SelfiesHeaderSortOptions extends React.Component {
-
+  // =============================================================================
+  // React's controlled element "select" allows setting the property "value" 
+  // which would select the selected entry (option).
+  // =============================================================================
   constructor(props) {
     super(props);
 
+    let selectMap = {
+      'likes+1': 'Like number; Asc.',
+      'likes-1': 'Like number; Desc.',
+      'captions+1': 'Caption; Asc.',
+      'captions-1': 'Caption; Desc.',
+    };
+
     this.state = {
-      visibility: 'hidden'
+      selectValue: 'likes-1',
+      selectMap: selectMap
     };
   }
 
-  componentDidMount() {
-    this.readSortCookie();
-  }
-
   // =============================================================================
-  // readSortCookie would:
+  // Find the select option element pointed to by the cookie.
+  // The cookie string is the same as the options' id. 
   // - read 'sort' cookie 
   // - set the selected option.
-  // - make the select-option-div visible (to avoid jitter).
-  // - sort the grid items array.
+  // - invoke the call
   // =============================================================================
   readSortCookie = () => {
-    // set default values in case there is no cookie yet.
-    let sortAttr = 'likes';
-    let sortDirection = -1;
     let sortCookie = getCookie('sort');
     if (sortCookie === null) {
-      sortCookie = "likes-1";
-    } else {
-      let sortArr = sortCookie.match('(.*)([-+]1)');
-      sortAttr = sortArr[1];
-      sortDirection = sortArr[2];
+      sortCookie = this.state.selectValue; // default value
     }
 
-    // Find the select option element pointed to by the cookie and add 'selected' attribute.
-    // The options carry the same id as the cookie.
-    let selectedOption = document.getElementById(sortCookie);
-    selectedOption.setAttribute("selected", "selected");
-    this.setState({ visibility: 'visible' });
+    let sortArr = sortCookie.match('(.*)([-+]1)');
+    let sortAttr = sortArr[1];
+    let sortDirection = sortArr[2];
 
-    sortGridItems(sortAttr, sortDirection);
+    this.setState({ selectValue: sortCookie });
+    this.props.sortOptionsChangedCallback(sortAttr, sortDirection);
   }
 
+  // =============================================================================
+  // Invoked upon selection of a new sorting option. 
+  // The method:
+  // 1. determines the attr and direction
+  // 2. set the cookie accordingly
+  // 3. invokes the call back so the gird will get re-sorted.
+  // =============================================================================
   sortChangeEventHandler = (event) => {
     let sortAttr = '';
     let sortDirection = '';
@@ -57,7 +63,7 @@ class SelfiesHeaderSortOptions extends React.Component {
         break;
       case 'likes-1':
         sortAttr = 'likes';
-        sortDirection = 1;
+        sortDirection = -1;
         break;
       case 'captions+1':
         sortAttr = 'captions';
@@ -72,17 +78,29 @@ class SelfiesHeaderSortOptions extends React.Component {
     }
 
     setCookie('sort', selectedOptionId);
+
+    this.setState({ selectValue: selectedOptionId });
+    this.props.sortOptionsChangedCallback(sortAttr, sortDirection);
+  }
+
+  // =============================================================================
+  // readSortCookie should be invoked only once.
+  // =============================================================================  
+  componentDidMount() {
+    this.readSortCookie();
   }
 
   render() {
-    let theStyle = { visibility: this.state.visibility }
+    let m = this.state.selectMap;
 
-    return (<div id="select-option-div" style={theStyle}>
-            <select id="select-sort" onChange={this.sortChangeEventHandler}>
-              <option id="likes+1">Like number; Asc.</option>
-              <option id="likes-1">Like number; Desc.</option>
-              <option id="captions+1">Caption; Asc.</option>
-              <option id="captions-1">Caption; Desc.</option>
+    return (<div id="select-option-div" >
+            <select id="select-sort" 
+                    value={m[this.state.selectValue]} 
+                    onChange={this.sortChangeEventHandler}>
+              <option id="likes+1">{m['likes+1']}</option>
+              <option id="likes-1">{m['likes-1']}</option>
+              <option id="captions+1">{m['captions+1']}</option>
+              <option id="captions-1">{m['captions-1']}</option>
             </select>
 	         </div>);
   }

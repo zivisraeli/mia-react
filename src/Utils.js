@@ -6,7 +6,7 @@ import { gridItemsData } from './gridItemsData';
 // Since gridItemsData is imported, Javascript would allow to change it.
 // An imported symbol is akin to having a const symbol. 
 // =============================================================================
-export const sortGridItemsEvent = (sortByAttr, direction) => {
+export const sortGridItems = (sortByAttr, direction) => {
   let sortedGridItems = gridItemsData.sort((item1, item2) => {
     let retVal = 0;
     if (sortByAttr === "captions") {
@@ -23,15 +23,6 @@ export const sortGridItemsEvent = (sortByAttr, direction) => {
 }
 
 // =============================================================================
-// This method is invoked from various places.
-// Upong setting the sort attribute and direction 
-// the gridItemsData array should be re-sorted.
-// =============================================================================  
-export const setSortProperties = (sortAttr, sortDirection) => {
-  sortGridItemsEvent(sortAttr, sortDirection);
-}
-
-// =============================================================================
 // cookie related functions
 // =============================================================================
 export const getCookie = (name) => {
@@ -43,12 +34,12 @@ export const getCookie = (name) => {
   return value ? value[1] : null;
 }
 
-/*export const setCookie = (name, value, days = 365) => {
+export const setCookie = (name, value, days = 365) => {
   let d = new Date;
   d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
   document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }
-*/
+
 // =============================================================================
 // Determine the current slected menu and style it differently. 
 // =============================================================================

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { setSortProperties, getCookie } from './Utils.js';
+import { sortGridItems, getCookie, setCookie } from './Utils.js';
 
 class SelfiesHeaderSortOptions extends React.Component {
 
@@ -42,10 +42,10 @@ class SelfiesHeaderSortOptions extends React.Component {
     selectedOption.setAttribute("selected", "selected");
     this.setState({ visibility: 'visible' });
 
-    setSortProperties(sortAttr, sortDirection);
+    sortGridItems(sortAttr, sortDirection);
   }
 
-  sortChangeEvent = (event) => {
+  sortChangeEventHandler = (event) => {
     let sortAttr = '';
     let sortDirection = '';
     let selectedIndex = event.target.selectedIndex;
@@ -71,15 +71,14 @@ class SelfiesHeaderSortOptions extends React.Component {
         break;
     }
 
-    setSortProperties(sortAttr, sortDirection);
-    //setCookie('sort', selectedOptionId);
+    setCookie('sort', selectedOptionId);
   }
 
   render() {
     let theStyle = { visibility: this.state.visibility }
 
     return (<div id="select-option-div" style={theStyle}>
-            <select id="select-sort" onChange={this.sortChangeEvent}>
+            <select id="select-sort" onChange={this.sortChangeEventHandler}>
               <option id="likes+1">Like number; Asc.</option>
               <option id="likes-1">Like number; Desc.</option>
               <option id="captions+1">Caption; Asc.</option>

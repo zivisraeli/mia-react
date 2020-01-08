@@ -1,25 +1,29 @@
 {
   "files": {
-    "main.css": "/mia-react/static/css/main.a4707d9e.chunk.css",
-    "main.js": "/mia-react/static/js/main.5ada98c1.chunk.js",
-    "main.js.map": "/mia-react/static/js/main.5ada98c1.chunk.js.map",
+    "main.css": "/mia-react/static/css/main.e117e4b0.chunk.css",
+    "main.js": "/mia-react/static/js/main.9acc99fd.chunk.js",
+    "main.js.map": "/mia-react/static/js/main.9acc99fd.chunk.js.map",
     "runtime-main.js": "/mia-react/static/js/runtime-main.a884c96e.js",
     "runtime-main.js.map": "/mia-react/static/js/runtime-main.a884c96e.js.map",
-    "static/js/2.22c7a848.chunk.js": "/mia-react/static/js/2.22c7a848.chunk.js",
-    "static/js/2.22c7a848.chunk.js.map": "/mia-react/static/js/2.22c7a848.chunk.js.map",
+    "static/js/2.eb1b9e17.chunk.js": "/mia-react/static/js/2.eb1b9e17.chunk.js",
+    "static/js/2.eb1b9e17.chunk.js.map": "/mia-react/static/js/2.eb1b9e17.chunk.js.map",
     "index.html": "/mia-react/index.html",
-    "precache-manifest.39165d5a37131458740133c36e2cd364.js": "/mia-react/precache-manifest.39165d5a37131458740133c36e2cd364.js",
+    "precache-manifest.cb293bd7157fd6796c54ca8483d1c4ac.js": "/mia-react/precache-manifest.cb293bd7157fd6796c54ca8483d1c4ac.js",
     "service-worker.js": "/mia-react/service-worker.js",
-    "static/css/main.a4707d9e.chunk.css.map": "/mia-react/static/css/main.a4707d9e.chunk.css.map",
-    "static/js/2.22c7a848.chunk.js.LICENSE": "/mia-react/static/js/2.22c7a848.chunk.js.LICENSE",
+    "static/css/main.e117e4b0.chunk.css.map": "/mia-react/static/css/main.e117e4b0.chunk.css.map",
+    "static/js/2.eb1b9e17.chunk.js.LICENSE": "/mia-react/static/js/2.eb1b9e17.chunk.js.LICENSE",
+    "static/media/footer-paw.png": "/mia-react/static/media/footer-paw.26f2d9a5.png",
+    "static/media/heart-full.png": "/mia-react/static/media/heart-full.0fe46424.png",
+    "static/media/heart-likes.png": "/mia-react/static/media/heart-likes.0fe46424.png",
+    "static/media/heart-outline.png": "/mia-react/static/media/heart-outline.a49ca95c.png",
     "static/media/img-frame.png": "/mia-react/static/media/img-frame.8cce3f06.png",
     "static/media/mia-about.jpg": "/mia-react/static/media/mia-about.ebc29d50.jpg",
     "static/media/mia-small-id02.jpg": "/mia-react/static/media/mia-small-id02.9114ed28.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.a884c96e.js",
-    "static/js/2.22c7a848.chunk.js",
-    "static/css/main.a4707d9e.chunk.css",
-    "static/js/main.5ada98c1.chunk.js"
+    "static/js/2.eb1b9e17.chunk.js",
+    "static/css/main.e117e4b0.chunk.css",
+    "static/js/main.9acc99fd.chunk.js"
   ]
 }

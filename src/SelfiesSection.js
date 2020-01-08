@@ -45,6 +45,7 @@ class SelfiesSection extends React.Component {
 			      return (<GridItem id={gridItemData.id}
 			                        src={gridItemData.src}
 			                        caption={gridItemData.caption}
+			                        isLiked={gridItemData.isLiked}
 			                        likeCount={gridItemData.likeCount}
 			                        date={gridItemData.date} 
 			                        imgLoadHandler={this.gridItemImgLoadHandler}

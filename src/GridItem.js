@@ -1,13 +1,16 @@
 import React from 'react';
 
 import heartOutline from './images/heart-outline.png';
+import heartFull from './images/heart-full.png';
 
 class GridItem extends React.Component {
-  /*constructor(props) {
-    super(props);
-  }*/
 
   render() {
+  	let theHeart = heartOutline;
+  	if (this.props.isLiked) {
+      theHeart = heartFull;
+  	}
+
     return (
       <figure id={this.props.id} className="grid-item">
          <img src={this.props.src} 
@@ -22,9 +25,9 @@ class GridItem extends React.Component {
                 alt="heart-likes"/>'s&nbsp;|&nbsp;
            {this.props.date}&nbsp;
          </figcaption>
-         <img src={heartOutline} 
+         <img src={theHeart} 
               className="heart" 
-              alt="heart-outline" />
+              alt="heart-like" />
        </figure>
     );
   }

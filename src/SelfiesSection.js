@@ -2,6 +2,7 @@ import React from 'react';
 
 import { gridItemsData } from './gridItemsData';
 import GridItem from './GridItem';
+import SelfiesModalImg from './SelfiesModalImg'
 
 let loadedImgCounter = 0;
 
@@ -10,37 +11,67 @@ class SelfiesSection extends React.Component {
     super(props);
 
     this.state = {
-      visibility: 'hidden',
-      spinnerDisplay: 'block'
+      gridVisibility: 'hidden',
+      spinnerDisplay: 'block',
+      blurEffect: 'non-blurred',
+      modalImgId: ''
     };
 
-    this.gridItemImgLoadHandler = this.gridItemImgLoadHandler.bind(this);
+    this.imgLoadCallbackEventHandler = this.imgLoadCallbackEventHandler.bind(this);
+    this.imgClickCallbackEventHandler = this.imgClickCallbackEventHandler.bind(this);
+    this.modalClosedCallbackEventHandler = this.modalClosedCallbackEventHandler.bind(this);
   }
 
   // =============================================================================
   // Invoked by the GridItem component upon image loading.
   // When loadedImgCounter === total number of images the div can become visible. 
   // =============================================================================  
-  gridItemImgLoadHandler() {
+  imgLoadCallbackEventHandler() {
     loadedImgCounter++;
     if (loadedImgCounter === gridItemsData.length) {
-      this.setState({ visibility: 'visible' });
-      this.setState({ spinnerDisplay: 'none' });
+      this.setState({
+        gridVisibility: 'visible',
+        spinnerDisplay: 'none'
+      });
       loadedImgCounter = 0;
     }
   }
 
+  imgClickCallbackEventHandler(event) {
+    let itemId = event.target.parentElement.id;
+    this.setState({
+      modalImgId: itemId,
+      blurEffect: 'blurred'
+    });
+  }
+
+  modalClosedCallbackEventHandler() {
+    this.setState({
+      modalImgId: '',
+      blurEffect: 'non-blurred'
+    });
+  }
+
+  // =============================================================================  
+  // A few properties here are conditional:
+  // - The section "blurring" effect is conditional based on the state.modalImgId value. 
+  // - In addition to the grid I'll also render the modal componet ONLY if hte modalImgId is not ''
+  //   This will happen if the image is clicked on in the GridItem component in which case
+  //   the imgClickCallbackEventHandler() is invoked that changes the state.modalImgId value.
+  // =============================================================================  
   render() {
-    let gridStyle = { visibility: this.state.visibility }
-    let spinnerStyle = { display: this.state.spinnerDisplay }
+    let gridVisibility = { visibility: this.state.gridVisibility }
+    let spinnerDisplay = { display: this.state.spinnerDisplay }
+    let blurEffect = this.state.blurEffect;
+    let modalImgId = this.state.modalImgId;
 
     return (
       <section className="grid-section middle-section">
-	      <div id="spinner-div" className="lds-ripple" style={spinnerStyle}>
+	      <div id="spinner-div" className="lds-ripple" style={spinnerDisplay}>
 	        <div></div>
 	        <div></div>
 	      </div>
-        <div className="dynamic-grid" style={gridStyle}>
+        <div className={"dynamic-grid " + blurEffect} style={gridVisibility}>
 			    {gridItemsData.map((gridItemData) => {
 			      return (<GridItem id={gridItemData.id}
 			                        src={gridItemData.src}
@@ -48,10 +79,17 @@ class SelfiesSection extends React.Component {
 			                        isLiked={gridItemData.isLiked}
 			                        likeCount={gridItemData.likeCount}
 			                        date={gridItemData.date} 
-			                        imgLoadHandler={this.gridItemImgLoadHandler}
+			                        imgLoadCallbackEventHandler={this.imgLoadCallbackEventHandler}
+			                        imgClickCallbackEventHandler={this.imgClickCallbackEventHandler}
 			                        key={gridItemData.id} />);
 			    })}
         </div>
+
+        {this.state.modalImgId !== '' ? 
+          <SelfiesModalImg modalImgId={modalImgId}
+                           modalClosedCallbackEventHandler={this.modalClosedCallbackEventHandler} /> :
+          ''
+        }
       </section>
     );
   }

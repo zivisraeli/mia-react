@@ -6,6 +6,7 @@ import Footer from './Footer';
 import { gridItemsData } from './gridItemsData';
 import { getCookie } from './Utils.js';
 
+export const gridItemsMap = new Map();
 
 class Selfies extends React.Component {
 
@@ -44,8 +45,12 @@ class Selfies extends React.Component {
       return retVal * sortDirection;
     });
 
+    gridItemsMap.clear();
+    // Since gridItemsData is imported I can't change it by doing gridItemsData = sortedGridItems
+    // Rather I need to change the individual elements.
     sortedGridItems.forEach((gridItem, index) => {
       gridItemsData[index] = gridItem;
+      gridItemsMap.set(gridItem.id, index);
     });
   }
 
@@ -88,7 +93,6 @@ class Selfies extends React.Component {
       if (gridElem != null) {
         gridElem.isLiked = true;
         gridElem.likeCount++;
-        console.log('id= ' + id);
       }
     });
   }

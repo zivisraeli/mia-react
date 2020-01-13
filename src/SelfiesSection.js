@@ -12,7 +12,7 @@ class SelfiesSection extends React.Component {
 
     this.state = {
       gridVisibility: 'hidden',
-      spinnerDisplay: 'block',
+      spinnerDisplay: 'inline-block',
       blurEffect: 'non-blurred',
       modalImgId: ''
     };
@@ -66,31 +66,33 @@ class SelfiesSection extends React.Component {
     let modalImgId = this.state.modalImgId;
 
     return (
-      <section className="grid-section middle-section">
-	      <div id="spinner-div" className="lds-ripple" style={spinnerDisplay}>
+      <React.Fragment>            
+        <div id="spinner-div" className="lds-ripple" style={spinnerDisplay}>
 	        <div></div>
 	        <div></div>
-	      </div>
-        <div className={"dynamic-grid " + blurEffect} style={gridVisibility}>
-			    {gridItemsData.map((gridItemData) => {
-			      return (<GridItem id={gridItemData.id}
-			                        src={gridItemData.src}
-			                        caption={gridItemData.caption}
-			                        isLiked={gridItemData.isLiked}
-			                        likeCount={gridItemData.likeCount}
-			                        date={gridItemData.date} 
-			                        imgLoadCallbackEventHandler={this.imgLoadCallbackEventHandler}
-			                        imgClickCallbackEventHandler={this.imgClickCallbackEventHandler}
-			                        key={gridItemData.id} />);
-			    })}
         </div>
+	      <section className="grid-section middle-section">
+	        <div className={"dynamic-grid " + blurEffect} style={gridVisibility}>
+				    {gridItemsData.map((gridItemData) => {
+				      return (<GridItem id={gridItemData.id}
+				                        src={gridItemData.src}
+				                        caption={gridItemData.caption}
+				                        isLiked={gridItemData.isLiked}
+				                        likeCount={gridItemData.likeCount}
+				                        date={gridItemData.date} 
+				                        imgLoadCallbackEventHandler={this.imgLoadCallbackEventHandler}
+				                        imgClickCallbackEventHandler={this.imgClickCallbackEventHandler}
+				                        key={gridItemData.id} />);
+				    })}
+	        </div>
 
-        {this.state.modalImgId !== '' ? 
-          <SelfiesModalImg modalImgId={modalImgId}
-                           modalClosedCallbackEventHandler={this.modalClosedCallbackEventHandler} /> :
-          ''
-        }
-      </section>
+	        {this.state.modalImgId !== '' ? 
+	          <SelfiesModalImg modalImgId={modalImgId}
+	                           modalClosedCallbackEventHandler={this.modalClosedCallbackEventHandler} /> :
+	          ''
+	        }
+	      </section>
+      </React.Fragment>
     );
   }
 }

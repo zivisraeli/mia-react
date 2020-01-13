@@ -86,11 +86,11 @@ class SelfiesModalImg extends React.Component {
 
     return (
       <div id="modal-container-div" style={{display: theModalImg.displayStyle}}>
-		    <div id="modal-content-div">
+		    <div id="modal-content-div" style={{overflow: 'auto', height: 300}}>
 		      <span className="modal-img-close-btn" onClick={this.closeBtnEventHandler}>&times;</span>
 		      <div id="modal-img-div">
 		        <img src={theModalImg.src} 
-		             alt="Mia's i-m-g"
+		             alt="Mia's i-m-g"		             
 		             onLoad={this.onLoadEventHandler}/>
 		        <span id="modal-img-text" className="modal-img-caption">{theModalImg.caption}</span>
 		        <span id="modal-img-like-count" className="modal-img-caption">{theModalImg.likeCount}</span>

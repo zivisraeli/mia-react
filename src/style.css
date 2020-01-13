@@ -603,6 +603,7 @@ form label {
   display: inline-block;
   width: 80px;
   text-align: right;
+  margin-right: 3px;
 }
 
 form #phone-comment {
@@ -617,7 +618,17 @@ form #phone-comment span {
   color: #aaaaaa;
 }
 
-/* ouline: none; removes the blue outline */
+form .dog-breed-disabled {
+  color: transparent;
+  text-shadow: #adadaa 0px 0px 3px;
+}
+
+form .dog-breed-enabled {
+  color: black;
+  text-shadow: none;
+}
+
+/* outline: none; removes the blue outline */
 input[type=text],
 input[type=email],
 input[type=tel],

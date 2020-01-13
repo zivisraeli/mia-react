@@ -13,7 +13,7 @@ class FansHeader extends React.Component {
       <React.Fragment>
         <h1>Join My Fan Club!</h1>
         <section id="form-header">
-          <ul class="customed-ul">
+          <ul className="customed-ul">
             <li>By joining my mailing list, you will get occasional e-mails.</li>
             <li>You'll receive exciting news about special events, my whereabouts, new images, and <i>all the news that's fit to print.</i></li>
             <li>You will not revieve more then one e-mail a week.</li>

@@ -16,7 +16,7 @@ class GridItem extends React.Component {
   }
 
   // =============================================================================
-  // the method would:
+  // The method would:
   //   - toggle the isLiked value.
   //   - increment/decrement the likeCount.
   //   - set the states. during rendering the state values r used to determine 

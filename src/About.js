@@ -5,12 +5,6 @@ import AboutSection from './AboutSection';
 import Footer from './Footer';
 
 class About extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
   render() {
     return (
       <React.Fragment>

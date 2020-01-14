@@ -6,7 +6,7 @@ class KitbullVideo extends React.Component {
       <React.Fragment>
 	      <h1>Kitbull / Pixar</h1> 
 	      <div id = "iframe-wrapper" >
-		      <iframe src="https://www.youtube.com/embed/AZS5cgybKcI"  
+		      <iframe src="https://www.youtube.com/embed/AZS5cgybKcI"
 		              frameBorder="0" 
 		              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 		              title="The Kitbull Movie"

@@ -1,11 +1,6 @@
 import React from 'react';
 
 class AboutSection extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {}
-  }
 
   render() {
     return (

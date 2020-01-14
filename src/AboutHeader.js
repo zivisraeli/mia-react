@@ -4,12 +4,6 @@ import imgFrame from './images/img-frame.png';
 import miaAbout from './images/mia-about.jpg';
 
 class AboutHeader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {}
-  }
-
   render() {
     return (
       <section id="about-top-section">
@@ -22,7 +16,6 @@ class AboutHeader extends React.Component {
       </section>
     );
   }
-
 }
 
 export default AboutHeader;

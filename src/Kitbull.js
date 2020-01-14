@@ -5,12 +5,6 @@ import KitbullSection from './KitbullSection';
 import Footer from './Footer';
 
 class Kitbull extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
   render() {
     return (
       <React.Fragment>  

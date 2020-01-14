@@ -5,12 +5,6 @@ import FansHeader from './FansHeader';
 import FansSection from './FansSection';
 
 class Fans extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
   render() {
     return (
       <React.Fragment>

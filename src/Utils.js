@@ -1,5 +1,3 @@
-
-
 // =============================================================================
 // cookie related functions
 // =============================================================================
@@ -16,26 +14,6 @@ export const setCookie = (name, value, days = 365) => {
   let d = new Date();
   d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
   document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
-}
-
-// =============================================================================
-// Determine the current slected menu and style it differently. 
-// =============================================================================
-export const currentMenuEntry = () => {
-  let anchor = '';
-  let pageName = window.location.pathname;
-  if (pageName.includes("index.html")) {
-    anchor = document.querySelector('nav span#index');
-  } else if (pageName.includes("selfies.html")) {
-    anchor = document.querySelector('nav span#selfies');
-  } else if (pageName.includes("fans.html")) {
-    anchor = document.querySelector('nav span#fans');
-  } else if (pageName.includes("kitbull.html")) {
-    anchor = document.querySelector('nav span#kitbull');
-  } else {
-    anchor = document.querySelector('nav span#index');
-  }
-  anchor.style.textShadow = '1px 1px 4px gray';
 }
 
 // =============================================================================

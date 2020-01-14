@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c04346e4456c368339b3b508efc1eebf",
+    "revision": "d69bde66fc031e46b26ada020b2cfb4b",
     "url": "/mia-react/index.html"
   },
   {
-    "revision": "28116b67bca3ecba3067",
-    "url": "/mia-react/static/css/main.e117e4b0.chunk.css"
+    "revision": "ac6e9fb2c4963a4c535e",
+    "url": "/mia-react/static/css/main.3e5e53dc.chunk.css"
   },
   {
-    "revision": "68c40b17f12d487c274f",
-    "url": "/mia-react/static/js/2.eb1b9e17.chunk.js"
+    "revision": "a549744005eb242b3604",
+    "url": "/mia-react/static/js/2.da984dee.chunk.js"
   },
   {
     "revision": "e928fe768baa9832b5bc57eae021f30c",
-    "url": "/mia-react/static/js/2.eb1b9e17.chunk.js.LICENSE"
+    "url": "/mia-react/static/js/2.da984dee.chunk.js.LICENSE"
   },
   {
-    "revision": "28116b67bca3ecba3067",
-    "url": "/mia-react/static/js/main.9acc99fd.chunk.js"
+    "revision": "ac6e9fb2c4963a4c535e",
+    "url": "/mia-react/static/js/main.2f0234b7.chunk.js"
   },
   {
     "revision": "fc1c766b071e04afba1e",
@@ -46,9 +46,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ebc29d505d88d1f22ab054866efcabdf",
     "url": "/mia-react/static/media/mia-about.ebc29d50.jpg"
-  },
-  {
-    "revision": "9114ed28db8c7121be367a4b2146f069",
-    "url": "/mia-react/static/media/mia-small-id02.9114ed28.jpg"
   }
 ]);

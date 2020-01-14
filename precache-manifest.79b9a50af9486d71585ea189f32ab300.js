@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "88d1b50eff7a2b3886aa38b817ce3347",
+    "revision": "d4c96d33131709c7cce8e20ec32d1423",
     "url": "/mia-react/index.html"
   },
   {
-    "revision": "d075825e21039c7f1ac3",
+    "revision": "9fc8ed3a86694a885933",
     "url": "/mia-react/static/css/main.3e5e53dc.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mia-react/static/js/2.da984dee.chunk.js.LICENSE"
   },
   {
-    "revision": "d075825e21039c7f1ac3",
-    "url": "/mia-react/static/js/main.9faa3812.chunk.js"
+    "revision": "9fc8ed3a86694a885933",
+    "url": "/mia-react/static/js/main.4d717e9b.chunk.js"
   },
   {
     "revision": "fc1c766b071e04afba1e",

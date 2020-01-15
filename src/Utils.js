@@ -15,20 +15,3 @@ export const setCookie = (name, value, days = 365) => {
   d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
   document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }
-
-// =============================================================================
-// Based on a cookie value find the header img id and set the image accordingly.
-// =============================================================================
-export const setHeaderImage = () => {
-  let headerImgId = getCookie("headerImgId");
-  headerImgId = headerImgId === null ? 'small-id02' : headerImgId;
-  let headerImgSrc = `images/mia-${headerImgId}.jpg`;
-  let headerImgElem = document.querySelector("header img");
-  headerImgElem.setAttribute("src", headerImgSrc);
-
-  // Without this function the border will be drawn first as a straight line and then 
-  // the image would appear. I'm waiting for the image to be loaded frist. 
-  headerImgElem.onload = function() {
-    headerImgElem.style.border = "1px solid black";
-  }
-}

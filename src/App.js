@@ -20,7 +20,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      currentMenuEntry : 'about',
+      currentMenuEntry : '/about',
     }
   }
 
@@ -29,11 +29,18 @@ class App extends React.Component {
   }
 
   // =============================================================================
-  // Based on the URL pathname I can determine the selected menu entry.
-  // This entry is styled a bit differently.
+  // - I need to determine the URL's context path so the app can run locally as well on mia-react.
+  //   1. remove trailing '/'
+  //   2. if path starts with '/mia-react' it's the context, otherwise it's ''.
+  //   3. if the context === path (meaning no menu entry was selected) set menuEntry to '/about'.
+  // - style the meny entry that is equals to menuEntry differently. 
   // =============================================================================
   render() {
-    let entry = window.location.pathname;
+    let pathName = window.location.pathname;
+    let lastPathNameChar = pathName.charAt(pathName.length-1);
+    pathName = (lastPathNameChar === '/') ? pathName.slice(0, -1) : pathName;
+    let contextPath = (pathName.startsWith("/mia-react")) ? "/mia-react" : "";
+    let menuEntry = pathName === contextPath ? contextPath + '/about' : pathName;
     let currentMenuEntryStyle = {textShadow: 'gray 1px 1px 4px'};
 
     return (      
@@ -42,39 +49,39 @@ class App extends React.Component {
           <HeaderImg />
           
           <nav id="navbar">
-            <Link to="/about" onClick={this.menuClickEventHandler} 
-                              style={entry.match('about') ? currentMenuEntryStyle : {}}>
+            <Link to={`${contextPath}/about`} onClick={this.menuClickEventHandler} 
+                              style={menuEntry.match('about') ? currentMenuEntryStyle : {}}>
                               <span id="index">About</span>
             </Link>
-            <Link to="/selfies" onClick={this.menuClickEventHandler}
-                                style={entry.match('selfies') ? currentMenuEntryStyle : {}}>
+            <Link to={`${contextPath}/selfies`} onClick={this.menuClickEventHandler}
+                                style={menuEntry.match('selfies') ? currentMenuEntryStyle : {}}>
                                 <span id="selfies">Selfies</span>
             </Link>
-            <Link to="/fans" onClick={this.menuClickEventHandler}
-                             style={entry.match('fans') ? currentMenuEntryStyle : {}}>
+            <Link to={`${contextPath}/fans`} onClick={this.menuClickEventHandler}
+                             style={menuEntry.match('fans') ? currentMenuEntryStyle : {}}>
                              <span id="fans">Fan Club</span>
             </Link>
-            <Link to="/kitbull" onClick={this.menuClickEventHandler}
-                                style={entry.match('kitbull') ? currentMenuEntryStyle : {}}>
+            <Link to={`${contextPath}/kitbull`} onClick={this.menuClickEventHandler}
+                                style={menuEntry.match('kitbull') ? currentMenuEntryStyle : {}}>
                                 <span id="kitbull">Kitbull</span>
             </Link>            
           </nav>
         </header>
 
         <Switch>
-          <Route path="/" exact>
+          <Route path={`${contextPath}/`} exact>
             <About />
           </Route> 
-          <Route path="/about">
+          <Route path={`${contextPath}/about`}>
             <About />
           </Route> 
-          <Route path="/selfies">
+          <Route path={`${contextPath}/selfies`}>
             <Selfies />
           </Route>  
-          <Route path="/fans">
+          <Route path={`${contextPath}/fans`}>
             <Fans />
           </Route> 
-          <Route path="/kitbull">
+          <Route path={`${contextPath}/kitbull`}>
             <Kitbull />
           </Route>         
         </Switch>

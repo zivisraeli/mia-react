@@ -2,55 +2,39 @@ import React from 'react';
 
 import { gridItemsData } from './gridItemsData';
 import { gridItemsMap } from './Selfies';
+import heartLikesIcon from './images/heart-likes.png';
 
 let modalImgIndex = 0;
 
 class SelfiesModalImg extends React.Component {
   constructor(props) {
     super(props);
-    console.log('SelfiesModalImg construcor has been invoked');
+
     this.state = {
-      modalImgId: this.props.modalImgId
+      modalImgId: this.props.modalImgId,
+      modalImgHeight: '',
     };
   }
 
-  onLoadEventHandler() {
-
-  }
-
   // =============================================================================
-  // renderModalImgEvent would render the clicked img inside the modal div.
+  // The img width is always 75% of the viewport.
+  // However I need to determine the height.
+  // - I find the width/height ration of the img and the width/height ratio of the viewport.
+  // - if it's wider img, I don't try to set the height.
+  // - otherwise, the height would be equal to the width. 
   // =============================================================================
-  renderModalImg(gridItem) {
-    /* // remove the 'small' portion of the src field value. 
-     // i.e. "mia-small-id07.jpg" => "mia-id07.jpg"
-     let arrSrc = gridItem.src.match('(.*mia-).*-(.*)(\.jpg$)');
-     let modalImgSrc = arrSrc[1] + arrSrc[2] + arrSrc[3];
-
-     // these 3 modal related elements are set with the data from this object. 
-     this.setState({src: modalImgSrc});
-     this.setState({caption: gridItem.caption});
-     this.setState({likeCount: gridItem.likeCount});*/
-    /*
-    //state.modalImg.setAttribute("src", modalImgSrc);
-    state.modalImgText.innerHTML = this.caption;
-    state.modalImgLikeCount.innerHTML = `${this.likeCount}&nbsp<img src="images/heart-likes.png" class="heart-likes-icon"/>'s`;
-*/
-    // Upon loading the img I need to get its "natural" size.
-    // Since I place the modal-content-div 110px from the top it's not included in the vp Height. 
-    // Yet, the max width of an image would be 75% of the vp. 
-    /*state.modalImg.onload = function() {
-      let imgW = state.modalImg.naturalWidth;
-      let imgH = state.modalImg.naturalHeight;
-      let vpW = document.documentElement.clientWidth;
-      let vpH = document.documentElement.clientHeight - 110;
-      let imgPropotion = imgW / imgH;
-      let newW = imgPropotion * vpH;
-      state.modalContentDiv.style.width = newW + "px";
-
-      // Finally, display it. 
-      state.modalCotainerDiv.style.display = "block";
-    }*/
+  onLoadEventHandler = (event) => {
+    let imgW = event.target.naturalWidth;
+    let imgH = event.target.naturalHeight;
+    let imgW2h = imgW / imgH;
+    let vpW = document.documentElement.clientWidth * 0.75;
+    let vpH = document.documentElement.clientHeight - 149;
+    let vpW2h = vpW / vpH;
+    if (imgW2h > vpW2h) {
+      this.setState({ modalImgHeight: '' });
+    } else {
+      this.setState({ modalImgHeight: vpH });
+    }
   }
 
   prevBtnEventHandler = () => {
@@ -65,8 +49,12 @@ class SelfiesModalImg extends React.Component {
     this.setState({ modalImgId: modalImgId });
   }
 
+  // =============================================================================
+  // The method SelfiesSection.modalClosedCallbackEventHandler, upong being invoked
+  // will re-render the entire grid un-blurred and remove the modal component. 
+  // =============================================================================
   closeBtnEventHandler = () => {
-  	this.props.modalClosedCallbackEventHandler();
+    this.props.modalClosedCallbackEventHandler();
   }
 
   render() {
@@ -84,31 +72,57 @@ class SelfiesModalImg extends React.Component {
       theModalImg.likeCount = gridItem.likeCount;
     }
 
+    // =============================================================================
+    // For divs:
+    // 1. modal-main-container-div
+    //   - it covers the ENTIRE viewport (w:100%, h:100%). 
+    //   - it contains 3 elements: 2 buttons (prev, next) and a sub-container div in between.
+    //   - its position is *fixed* on left:1, top:1 (relative to the viewport).
+    //   - it's the main container that is visible or none.
+    //   - it carries the value z-index:1 meaning it's in the front of the grid. 
+    //   - the grid was rendered blurred by the SelfiesSection.
+    // 2. modal-sub-container-div
+    //    - its width is 75% of the viewport width (75vw) and it's centered (margin:auto).
+    //    - it contains 2 elements: the close button and the image div. 
+    //    - its position is *relative* & starts below the header (based on the header's height+1)
+    //    - its background color is #fefefe which is slighty different then the grid background. 
+    // 3. modal-main-img-div
+    //    - it covers the entre containng div i.e. 75% of the view port. 
+    //    - it contains 3 elements: the main img div and captions (spans) at the bottom.
+    //    - it has a border and has paddings to "frame" the image.  
+    // 4. modal-img-div
+    //    - contains the img
+    //    - contains the scroll due to overflowY: 'auto'
+    // =============================================================================
     return (
-      <div id="modal-container-div" style={{display: theModalImg.displayStyle}}>
-		    <div id="modal-content-div" style={{overflow: 'auto', height: 300}}>
-		      <span className="modal-img-close-btn" onClick={this.closeBtnEventHandler}>&times;</span>
-		      <div id="modal-img-div">
-		        <img src={theModalImg.src} 
-		             alt="Mia's i-m-g"		             
-		             onLoad={this.onLoadEventHandler}/>
-		        <span id="modal-img-text" className="modal-img-caption">{theModalImg.caption}</span>
-		        <span id="modal-img-like-count" className="modal-img-caption">{theModalImg.likeCount}</span>
-		      </div>
-		    </div>
-		    <button id="prev-btn" 
-		            className="nav-button"
-		            onClick={this.prevBtnEventHandler}>
-		      <i className="fa fa-arrow-circle-left"></i>
-		      <span className="button-text">&nbsp;&nbsp;Previous</span>
-		    </button>
-		    <button id="next-btn" 
-		            className="nav-button" 
-		            onClick={this.nextBtnEventHandler}>
-		      <span className="button-text">Next&nbsp;&nbsp;</span>
-		      <i className="fa fa-arrow-circle-right"></i>
-		    </button>
-		  </div>
+      <div id="modal-main-container-div" style={{display: theModalImg.displayStyle}}>
+        <div id="modal-sub-container-div">
+          <span className="modal-img-close-btn" onClick={this.closeBtnEventHandler}>&times;</span>
+          <div id="modal-main-img-div" style={{padding:'25px 25px 25px 25px', border: '1px solid black'}}>
+            <div id="modal-img-div" style={{overflowY: 'auto',  overflowX: 'hidden', height: this.state.modalImgHeight}}>                                         
+              <img src={theModalImg.src} 
+                   alt="Mia's i-m-g"                 
+                   onLoad={this.onLoadEventHandler}/>           
+            </div>
+            <span id="modal-img-text" className="modal-img-caption">{theModalImg.caption}</span>
+            <span id="modal-img-like-count" className="modal-img-caption">
+              {theModalImg.likeCount} <img src={heartLikesIcon} class="heart-likes-icon"/>'s
+            </span>
+          </div>
+        </div>
+        <button id="prev-btn" 
+                className="nav-button"
+                onClick={this.prevBtnEventHandler}>
+          <i className="fa fa-arrow-circle-left"></i>
+          <span className="button-text">&nbsp;&nbsp;Previous</span>
+        </button>
+        <button id="next-btn" 
+                className="nav-button" 
+                onClick={this.nextBtnEventHandler}>
+          <span className="button-text">Next&nbsp;&nbsp;</span>
+          <i className="fa fa-arrow-circle-right"></i>
+        </button>
+      </div>
     )
   }
 }

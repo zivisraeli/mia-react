@@ -13,6 +13,7 @@ class SelfiesModalImg extends React.Component {
     this.state = {
       modalImgId: this.props.modalImgId,
       modalImgHeight: '',
+      containerDivMaxWidth: '',
     };
   }
 
@@ -27,10 +28,22 @@ class SelfiesModalImg extends React.Component {
     let imgW = event.target.naturalWidth;
     let imgH = event.target.naturalHeight;
     let imgW2h = imgW / imgH;
-    let vpW = document.documentElement.clientWidth * 0.75;
+
+    let vpW = document.documentElement.clientWidth;
     let vpH = document.documentElement.clientHeight - 149;
+    if (imgW < (document.documentElement.clientWidth * 0.65)) {
+      this.setState({containerDivMaxWidth:'50vw'});
+      vpW = vpW * 0.5;
+    } else {
+      this.setState({containerDivMaxWidth:'75vw'});
+      vpW = vpW * 0.75;
+    }
+
     let vpW2h = vpW / vpH;
-    if (imgW2h > vpW2h) {
+    
+    // For a wide image or for image where height is smaller then the viewport's height - 
+    // don't specify height.
+    if (imgW2h > vpW2h || (imgH < vpH)) {
       this.setState({ modalImgHeight: '' });
     } else {
       this.setState({ modalImgHeight: vpH });
@@ -96,7 +109,7 @@ class SelfiesModalImg extends React.Component {
     // =============================================================================
     return (
       <div id="modal-main-container-div" style={{display: theModalImg.displayStyle}}>
-        <div id="modal-sub-container-div">
+        <div id="modal-sub-container-div" style={{maxWidth: this.state.containerDivMaxWidth}}>
           <span className="modal-img-close-btn" onClick={this.closeBtnEventHandler}>&times;</span>
           <div id="modal-main-img-div" style={{padding:'25px 25px 25px 25px', border: '1px solid black'}}>
             <div id="modal-img-div" style={{overflowY: 'auto',  overflowX: 'hidden', height: this.state.modalImgHeight}}>                                         

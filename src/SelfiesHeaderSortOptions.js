@@ -18,7 +18,6 @@ class SelfiesHeaderSortOptions extends React.Component {
     };
 
     this.state = {
-      sortValue: this.props.sortOptionsInitialValue,
       selectMap: selectMap
     };
   }
@@ -35,7 +34,6 @@ class SelfiesHeaderSortOptions extends React.Component {
     let selectedOptionId = event.target[selectedIndex].id;
 
     setCookie('sort', selectedOptionId);
-    this.setState({ sortValue: selectedOptionId });
     this.props.sortOptionsChangedCallback(selectedOptionId);
   }
 
@@ -44,7 +42,7 @@ class SelfiesHeaderSortOptions extends React.Component {
 
     return (<div id="select-option-div" >
             <select id="select-sort" 
-                    value={m[this.state.sortValue]} 
+                    value={m[this.props.sortOptionsSelectValue]} 
                     onChange={this.sortChangeEventHandler}>
               <option id="likes+1">{m['likes+1']}</option>
               <option id="likes-1">{m['likes-1']}</option>

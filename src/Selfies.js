@@ -137,7 +137,7 @@ class Selfies extends React.Component {
     return (
       <React.Fragment>
         <main id="grid-section">
-          <SelfiesHeader sortOptionsInitialValue={this.state.sortValue}
+          <SelfiesHeader sortOptionsSelectValue={this.state.sortValue}
                          sortOptionsChangedCallback={this.sortOptionsChangedCallback}/>
           <SelfiesSection />
         </main>
